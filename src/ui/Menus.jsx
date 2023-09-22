@@ -92,7 +92,7 @@ function Toggle({id}){
 
 function List({id, children}){
   const {isOpen, position, close} = useContext(MenusContext)
-  const ref = useCloseModal(close)
+  const ref = useCloseModal(close, false)
   if(id !== isOpen) return null
   return <StyledList ref={ref} position={position}>{children}</StyledList>
 }

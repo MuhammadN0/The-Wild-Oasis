@@ -1,19 +1,22 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef } from 'react';
 
-export function useCloseModal (handler) {
-  const ref = useRef()
+export function useCloseModal(handler, listenCapturing = true) {
+  const ref = useRef();
 
-  useEffect(function(){
-    function handleClose (e) {
+  useEffect(
+    function () {
+      function handleClose(e) {
+        if (ref.current && !ref.current.contains(e.target)) handler?.();
+        return;
+      }
 
-      if (ref.current && !ref.current.contains(e.target)) handler?.()
-      return
-    }
+      document.addEventListener('click', handleClose, listenCapturing);
 
-    document.addEventListener('click',handleClose,false)
+      return () =>
+        document.removeEventListener('click', handleClose, listenCapturing);
+    },
+    [handler, listenCapturing]
+  );
 
-    return () => document.removeEventListener('click',handleClose,false)
-  },[handler])
-
-  return ref
+  return ref;
 }

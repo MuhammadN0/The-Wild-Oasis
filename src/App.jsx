@@ -17,6 +17,7 @@ import BookingDetails from './pages/BookingDetails';
 import Checkin from './pages/Checkin';
 import ProtectedRoute from './ui/ProtectedRoute';
 import { DarkModeProvider } from './context/DarkModeContext';
+import NewBooking from './pages/NewBooking';
 
 function App() {
   const queryClient = new QueryClient({
@@ -49,6 +50,7 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="settings" element={<Settings />} />
             <Route path="account" element={<Account />} />
+            <Route path="newbooking" element={<NewBooking />} />
           </Route>
 
           <Route path="login" element={<Login />} />
